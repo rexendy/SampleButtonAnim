@@ -56,7 +56,6 @@
          [animation setDuration:5];
          [buttonView.layer addAnimation:animation forKey:@"animateLayer"];
          buttonView.transform = CGAffineTransformMakeRotation(360);
-         [cloudView setImage:[UIImage imageNamed:@"Cloud_Off.png"]];
 
         
      }
@@ -73,16 +72,12 @@
      {
          
          [btnprogress setTitle:@"" forState:UIControlStateNormal];
-        [btnprogress setFrame:CGRectMake(buttonView.frame.origin.x + 2, btnprogress.frame.origin.y, btnprogress.frame.size.width - 100, btnprogress.frame.size.height)];
+        [btnprogress setFrame:CGRectMake(buttonView.frame.origin.x + 2, btnprogress.frame.origin.y, btnprogress.frame.size.width - 95, btnprogress.frame.size.height)];
          
-         [cloudView setImage:[UIImage imageNamed:@"Cloud_On.png"]];
      }
                      completion: nil
      ];
 
-    
-   
-    
 }
 
 - (void)viewDidLoad
