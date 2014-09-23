@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIColor+AddMethod.h"
 
 @interface ViewController : UIViewController
-
+{
+    UIImageView *buttonView;
+}
 @end
