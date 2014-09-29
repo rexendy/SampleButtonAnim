@@ -9,8 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "UIColor+AddMethod.h"
 
+#import "DACircularProgressView.h"
+
 @interface ViewController : UIViewController
 {
-    UIImageView *buttonView;
+    UIButton *btnCircle;
+    UIButton *btnBackView;
+    UIImageView *cloudView;
+    
+    DACircularProgressView *circleProgressBar;
+    
+    NSTimer *timer;
 }
+
+- (void)clickBtn;
+
+- (void)startAnimation;
 @end

@@ -28,6 +28,7 @@
 		7977021419D1343C009A7251 /* download-icon-animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7977020F19D1343C009A7251 /* download-icon-animation.gif */; };
 		7977021519D1343C009A7251 /* Market_Deco.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7977021019D1343C009A7251 /* Market_Deco.ttf */; };
 		7977021919D13974009A7251 /* UIColor+AddMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 7977021819D13974009A7251 /* UIColor+AddMethod.m */; };
+		84A12D6619D953460071D125 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A12D6519D953460071D125 /* DACircularProgressView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		7977021019D1343C009A7251 /* Market_Deco.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Market_Deco.ttf; sourceTree = "<group>"; };
 		7977021719D13974009A7251 /* UIColor+AddMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AddMethod.h"; sourceTree = "<group>"; };
 		7977021819D13974009A7251 /* UIColor+AddMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AddMethod.m"; sourceTree = "<group>"; };
+		84A12D6419D953460071D125 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
+		84A12D6519D953460071D125 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +130,7 @@
 		797701D919D12F16009A7251 /* ButtonAnimation */ = {
 			isa = PBXGroup;
 			children = (
+				84A12D6319D9532D0071D125 /* CircularProgressBar */,
 				7977021619D13949009A7251 /* Category */,
 				7977020B19D13424009A7251 /* Resources */,
 				797701E219D12F16009A7251 /* AppDelegate.h */,
@@ -189,6 +193,15 @@
 				7977021819D13974009A7251 /* UIColor+AddMethod.m */,
 			);
 			name = Category;
+			sourceTree = "<group>";
+		};
+		84A12D6319D9532D0071D125 /* CircularProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				84A12D6419D953460071D125 /* DACircularProgressView.h */,
+				84A12D6519D953460071D125 /* DACircularProgressView.m */,
+			);
+			name = CircularProgressBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A12D6619D953460071D125 /* DACircularProgressView.m in Sources */,
 				7977021919D13974009A7251 /* UIColor+AddMethod.m in Sources */,
 				797701ED19D12F16009A7251 /* ViewController.m in Sources */,
 				797701E419D12F16009A7251 /* AppDelegate.m in Sources */,

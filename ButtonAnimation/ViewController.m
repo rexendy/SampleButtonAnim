@@ -21,27 +21,41 @@
     self.view = [[UIView alloc] initWithFrame:fullScreen];
     //[self.view setBackgroundColor:[UIColor returnColorWithHexCode:BG_COLOR]];
     
-    UIButton *btnprogress = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnprogress setFrame:CGRectMake(10, 102, 150, 50)];
-    [btnprogress setBackgroundColor:[UIColor returnColorWithHexCode:BG_COLOR]];
-    [btnprogress setTitle:@"Download" forState:UIControlStateNormal];
-    [btnprogress.titleLabel setFont:[UIFont fontWithName:@"Market_Deco.ttf" size:12]];
-    [btnprogress.titleLabel setTextAlignment:NSTextAlignmentRight];
-    [btnprogress.layer setCornerRadius:20];
-    [btnprogress.layer setBorderWidth:5.0f];
-    [btnprogress.layer setBorderColor:[UIColor returnColorWithHexCode:BG_COLOR].CGColor];
-    [self.view addSubview:btnprogress];
+    btnBackView = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnBackView setFrame:CGRectMake(10, 100, 150, 50)];
+    [btnBackView setBackgroundColor:[UIColor returnColorWithHexCode:BG_COLOR]];
+    [btnBackView setTitle:@"Download" forState:UIControlStateNormal];
+    [btnBackView.titleLabel setFont:[UIFont fontWithName:@"Market_Deco.ttf" size:12]];
+    [btnBackView.titleLabel setTextAlignment:NSTextAlignmentRight];
+    [btnBackView.layer setCornerRadius:20];
+    [btnBackView.layer setBorderWidth:5.0f];
+    [btnBackView.layer setBorderColor:[UIColor returnColorWithHexCode:BG_COLOR].CGColor];
+    [self.view addSubview:btnBackView];
 
     
+    circleProgressBar = [[DACircularProgressView alloc] initWithFrame:CGRectMake(58, 100, 50, 50)];
+    circleProgressBar.roundedCorners = YES;
+    circleProgressBar.tintColor = [UIColor clearColor];
+    circleProgressBar.progressTintColor = [UIColor returnColorWithHexCode:PROGRESS_COLOR];
+    [self.view addSubview:circleProgressBar];
+    [circleProgressBar setAlpha:0];
+    
     UIImage *btnImage = [UIImage imageNamed:@"Button.png"];
-    buttonView = [[UIImageView alloc] initWithFrame:CGRectMake(60, 103, 45, 45)];
-    [buttonView setImage:btnImage];
-    [self.view addSubview:buttonView];
+    btnCircle = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnCircle setFrame:CGRectMake(10, 103, 45, 45)];
+    [btnCircle setBackgroundImage:btnImage forState:UIControlStateNormal];
+    [self.view addSubview:btnCircle];
+    [btnCircle addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchUpInside];
     
-    UIImageView *cloudView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 15, 15)];
+    cloudView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 15, 15)];
     [cloudView setImage:[UIImage imageNamed:@"Cloud_Off.png"]];
-    [buttonView addSubview:cloudView];
+    [btnCircle addSubview:cloudView];
+
     
+}
+
+- (void)clickBtn
+{
     [UIView animateWithDuration: 10
                           delay: 5
          usingSpringWithDamping: 5
@@ -51,15 +65,17 @@
      {
          
          CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"position.x"];
-         [animation setFromValue:[NSNumber numberWithFloat:btnprogress.frame.origin.x + 20]];
+         [animation setFromValue:[NSNumber numberWithFloat:30]];
          [animation setToValue:[NSNumber numberWithFloat:60]];
          [animation setDuration:5];
-         [buttonView.layer addAnimation:animation forKey:@"animateLayer"];
-         buttonView.transform = CGAffineTransformMakeRotation(360);
-
-        
+         [btnCircle.layer addAnimation:animation forKey:@"animateLayer"];
+        // btnCircle.transform = CGAffineTransformMakeRotation(360);
+         
+         
      }
-                     completion: nil
+                     completion: ^(BOOL finished){
+                         [btnCircle setFrame:CGRectMake(60, 103, 45, 45)];
+                     }
      ];
     
     
@@ -71,15 +87,36 @@
                      animations: ^
      {
          
-         [btnprogress setTitle:@"" forState:UIControlStateNormal];
-        [btnprogress setFrame:CGRectMake(buttonView.frame.origin.x + 2, btnprogress.frame.origin.y, btnprogress.frame.size.width - 95, btnprogress.frame.size.height)];
+         [btnBackView setTitle:@"" forState:UIControlStateNormal];
+         [btnBackView setFrame:CGRectMake(btnBackView.frame.origin.x + 45, btnBackView.frame.origin.y, btnBackView.frame.size.width - 95, btnBackView.frame.size.height)];
+         [[btnBackView layer] setCornerRadius:22];
          
      }
-                     completion: nil
+                     completion:nil
      ];
-
+ 
+    //[self performSelector:@selector(startAnimation) withObject:nil afterDelay:10 inModes:nil];
+    [self performSelector:@selector(startAnimation) withObject:nil afterDelay:10];
 }
 
+- (void)startAnimation
+{
+    
+    [circleProgressBar setAlpha:1];
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(processProgress) userInfo:nil repeats:YES];
+}
+
+- (void)processProgress
+{
+    if (circleProgressBar.progress >= 1.0f) {
+        [timer invalidate];
+         [cloudView setImage:[UIImage imageNamed:@"Cloud_On.png"]];
+    }
+    else
+    {
+        circleProgressBar.progress += 0.01f;
+    }
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
