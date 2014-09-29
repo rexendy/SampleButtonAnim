@@ -22,7 +22,10 @@
     NSTimer *timer;
 }
 
+- (void)setBackFrame;
 - (void)clickBtn;
-
+- (void)startButtonAnimation;
 - (void)startAnimation;
+- (void)processProgress;
+
 @end

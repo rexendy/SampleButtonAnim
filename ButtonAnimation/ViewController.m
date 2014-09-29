@@ -54,7 +54,22 @@
     
 }
 
+- (void)setBackFrame
+{
+    [btnBackView setFrame:CGRectMake(10, 100, 150, 50)];
+    [circleProgressBar setAlpha:0];
+    [cloudView setImage:[UIImage imageNamed:@"Cloud_Off.png"]];
+    [btnCircle setFrame:CGRectMake(10, 103, 45, 45)];
+    [btnBackView setTitle:@"Download" forState:UIControlStateNormal];
+}
+
 - (void)clickBtn
+{
+    [self setBackFrame];
+    [self performSelector:@selector(startButtonAnimation) withObject:nil afterDelay:0.5];
+}
+
+- (void)startButtonAnimation
 {
     [UIView animateWithDuration: 10
                           delay: 5
@@ -69,7 +84,7 @@
          [animation setToValue:[NSNumber numberWithFloat:60]];
          [animation setDuration:5];
          [btnCircle.layer addAnimation:animation forKey:@"animateLayer"];
-        // btnCircle.transform = CGAffineTransformMakeRotation(360);
+         // btnCircle.transform = CGAffineTransformMakeRotation(360);
          
          
      }
@@ -86,16 +101,14 @@
                         options: 0
                      animations: ^
      {
-         
          [btnBackView setTitle:@"" forState:UIControlStateNormal];
          [btnBackView setFrame:CGRectMake(btnBackView.frame.origin.x + 45, btnBackView.frame.origin.y, btnBackView.frame.size.width - 95, btnBackView.frame.size.height)];
          [[btnBackView layer] setCornerRadius:22];
-         
+        // [[btnBackView titleLabel] setAlpha:0];
      }
                      completion:nil
      ];
- 
-    //[self performSelector:@selector(startAnimation) withObject:nil afterDelay:10 inModes:nil];
+    
     [self performSelector:@selector(startAnimation) withObject:nil afterDelay:10];
 }
 
